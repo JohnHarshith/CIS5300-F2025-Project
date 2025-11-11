@@ -1,16 +1,3 @@
-"""Original file is located at
-    https://colab.research.google.com/drive/1vJLOo72Hdx3e60piYYTnM3eh7YpgrFIq
-
-# Milestone 2: Evaluation Script and Baselines
-
-This notebook implements:
-1. Evaluation script with Recall@10, Exact Match, Span F1, and nDCG metrics
-2. Simple baseline (TF-IDF retrieval)
-3. Strong baseline (BM25 retrieval)
-
-## Setup and Installation
-"""
-
 # Installing required packages
 !pip install rank-bm25 nltk scikit-learn numpy pandas -q
 
@@ -44,8 +31,6 @@ except:
     nltk.download('stopwords', quiet=True)
     stop_words = set(stopwords.words('english'))
 
-"""## Data Loading Utilities"""
-
 def load_test_benchmark(benchmark_path: str) -> List[Dict]:
     """Load test benchmark JSON file."""
     with open(benchmark_path, 'r') as f:
@@ -69,8 +54,6 @@ def load_training_data(csv_path: str, n_samples: int = None) -> pd.DataFrame:
         df = df.head(n_samples)
     return df
 
-"""## Text Preprocessing"""
-
 def preprocess_text(text: str, lower: bool = True, remove_stopwords: bool = False) -> str:
     """Preprocess text for retrieval."""
     if lower:
@@ -89,8 +72,6 @@ def tokenize(text: str, remove_stopwords: bool = False) -> List[str]:
     else:
         tokens = [t for t in tokens if t.isalnum()]
     return tokens
-
-"""## Evaluation Metrics"""
 
 def exact_match(predicted: str, gold: str) -> bool:
     """Check if predicted text exactly matches gold text."""
@@ -187,8 +168,6 @@ def ndcg_at_k(retrieved_passages: List[str], gold_passages: List[str], k: int = 
         return 0.0
 
     return dcg / idcg
-
-"""## Evaluation Script (score.py)"""
 
 def evaluate_retrieval(
     predictions: List[Dict],
@@ -298,8 +277,6 @@ class TFIDFRetriever:
         results = [(self.corpus_texts[i], similarities[i]) for i in top_indices]
         return results
 
-"""## Strong Baseline: BM25 Retrieval"""
-
 class BM25Retriever:
     """
     BM25 (Best Matching 25) retrieval baseline.
@@ -331,8 +308,6 @@ class BM25Retriever:
 
         results = [(self.corpus_texts[i], scores[i]) for i in top_indices]
         return results
-
-"""## Data Preparation for Evaluation"""
 
 def chunk_text(text: str, chunk_size: int = 500) -> List[str]:
     """Split text into overlapping chunks."""
@@ -399,8 +374,6 @@ def prepare_corpus_from_benchmark(
 
     return corpus_passages, query_to_gold
 
-"""## Running Baselines on Test Data"""
-
 from google.colab import files
 import zipfile
 import io
@@ -452,8 +425,6 @@ try:
 except Exception as e:
     print(f"Error loading test benchmark: {e}")
     tests = []
-
-"""### Simple Baseline: TF-IDF"""
 
 import nltk
 
@@ -508,8 +479,6 @@ else:
     print("Skipping TF-IDF baseline: corpus or tests not loaded")
     tfidf_results = {}
 
-"""### Strong Baseline: BM25"""
-
 print("Strong Baseline: BM25 Retrieval")
 
 if len(corpus_passages) > 0 and len(tests) > 0:
@@ -549,10 +518,6 @@ if len(corpus_passages) > 0 and len(tests) > 0:
 else:
     print("Skipping BM25 baseline: corpus or tests not loaded")
     bm25_results = {}
-
-"""## Summary of Results
-
-"""
 
 if tfidf_results and bm25_results:
     print("=" * 60)
