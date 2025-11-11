@@ -196,5 +196,3 @@ For Span F1, we use NLTK's word tokenizer and filter to alphanumeric tokens only
 2. Manning, C. D., Raghavan, P., & Schütze, H. (2008). *Introduction to Information Retrieval*. Cambridge University Press.
 
 3. Järvelin, K., & Kekäläinen, J. (2002). Cumulated gain-based evaluation of IR techniques. *ACM Transactions on Information Systems*, 20(4), 422-446.
-
-4. LegalBench: A Collaboratively Built Benchmark for Measuring Legal Reasoning in Large Language Models. [LegalBench Website](https://legalbench.readthedocs.io/)
