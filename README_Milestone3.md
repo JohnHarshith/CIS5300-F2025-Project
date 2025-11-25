@@ -14,7 +14,7 @@ Our project tackles context-aware legal passage retrieval: given a short legal q
 |---------------------------------|-------------|---------|-----------|---------|
 | TF-IDF (simple baseline)        | 0.0000      | 0.2009  | 0.3717    | 0.2752  |
 | BM25 (strong baseline)          | 0.0000      | 0.2217  | 0.5267    | 0.4544  |
-| Sentence-BERT (strong baseline) | 0.0000      | 0.2147  | 0.4317    | 0.3232  |
+| Sentence-BERT (dense)           | 0.0000      | 0.2147  | 0.4317    | 0.3232  |
 | Hybrid (BM25 + SBERT)           | 0.0000      | **0.2357** | **0.5511** | **0.4808** |
 
 The exact-match metric stays zero because ContractNLI spans rarely align exactly with 500-word chunks; future work could trim passages downstream or add a cross-encoder re-ranker.
