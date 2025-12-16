@@ -762,6 +762,7 @@ print("Train examples:", len(train_examples))
 print("Dev examples:", len(dev_examples))
 
 from torch.utils.data import DataLoader
+from sentence_transformers import CrossEncoder
 
 BATCH_SIZE = 16
 NUM_EPOCHS = 1
